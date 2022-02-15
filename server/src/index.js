@@ -6,11 +6,12 @@ const typeDefs = require("./graphql/schemas")
 const connectDB = require("./db")
 const app = express()
 const PORT = process.env.PORT || 3000
-
+const URI = process.env.MONGO_URI
 app.get("/", (req, res) => res.send("hello!"))
 
 async function start() {
   try {
+    await connectDB(URI)
     const server = new ApolloServer({ typeDefs, resolvers })
 
     await server.start()
