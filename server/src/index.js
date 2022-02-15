@@ -15,6 +15,7 @@ async function start() {
 
     await server.start()
     server.applyMiddleware({ app })
+
     app.listen(PORT, () => console.log("listening on port", PORT))
   } catch (e) {
     console.log(e)
