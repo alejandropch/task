@@ -1,4 +1,5 @@
-const User = require("../../models/User.model")
+const { UserInputError } = require("apollo-server-express")
+const { ApolloError } = require("apollo-server-errors")
 
 const resolvers = {
   Query: {
