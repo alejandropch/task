@@ -13,6 +13,17 @@ export default function MainPage() {
       setUsers(userData)
     }
   }, [loading, data])
+
+  if (loading) {
+    return (
+      <div className="spinner-border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
+    )
+  }
+  if (error) {
+    return <h2>Something terrible happen!</h2>
+  }
   return (
     <div className="container-md">
       <h2 className="text-center">Add Users</h2>
