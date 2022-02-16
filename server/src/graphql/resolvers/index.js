@@ -18,6 +18,15 @@ const resolvers = {
       })
       return newUser
     },
+    deleteUser: async (parent, { id }) => {
+      const isDeleted = await User.findByIdAndDelete(id).catch((error) => {
+        throw new UserInputError(error.messaje, { invalidArgs: id })
+      })
+      if (!isDeleted) {
+        throw new ApolloError("User with the id provided does not exist")
+      }
+      return isDeleted
+    },
   },
 }
 module.exports = resolvers

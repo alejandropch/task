@@ -6,6 +6,7 @@ const typeDefs = gql`
     email: String
     note: String
   }
+
   type Mutation {
     addUser(
       first_name: String!
@@ -13,7 +14,10 @@ const typeDefs = gql`
       email: String!
       note: String!
     ): User
+
+    deleteUser(id: ID!): User!
   }
+
   type Query {
     users: [User]!
   }
