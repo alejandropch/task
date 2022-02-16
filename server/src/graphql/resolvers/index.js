@@ -15,12 +15,13 @@ const resolvers = {
         if (error.code == 11000) {
           throw new ApolloError("Email already exists")
         }
+        throw new UserInputError(error.message, { invalidArgs: args })
       })
       return newUser
     },
     deleteUser: async (parent, { id }) => {
       const isDeleted = await User.findByIdAndDelete(id).catch((error) => {
-        throw new UserInputError(error.messaje, { invalidArgs: id })
+        throw new UserInputError(error.message, { invalidArgs: id })
       })
       if (!isDeleted) {
         throw new ApolloError("User with the id provided does not exist")
