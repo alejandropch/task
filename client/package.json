@@ -30,9 +30,12 @@
   "version": "1.0.0",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cypress open",
     "start": "webpack serve --mode development",
-    "build": "tsc"
+    "build:ts": "tsc",
+    "dev": "webpack serve --mode development",
+    "build": "webpack --mode development",
+    "serve:dev": "webpack --mode 'development' && npx serve dist -s"
   },
   "keywords": [],
   "author": "alejandro <alejandropachas1@gmail.com>",
