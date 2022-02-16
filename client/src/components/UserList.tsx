@@ -9,6 +9,12 @@ interface User {
 }
 
 export default function UserList({ handleClick, users }: any) {
+  const isEmpty = users.length === 0
+
+  if (isEmpty) {
+    return <p>There is no users...</p>
+  }
+
   return (
     <div>
       {users.map((user: User, key: number) => {
@@ -19,7 +25,7 @@ export default function UserList({ handleClick, users }: any) {
             className="d-flex flex-row my-4 justify-content-center "
             key={key}
           >
-            <p className="fw-bolder mx-3 ">
+            <p className="fw-bolder mx-3">
               {first_name} {last_name} | {note} | {email}
             </p>
             <button
