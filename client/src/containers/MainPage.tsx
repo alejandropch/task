@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import Form from "./Form"
 import Users from "./Users"
+import Spin from "../components/Spin"
 import { useUserQuery } from "../graphql/queries.graphql"
 
 export default function MainPage() {
@@ -14,13 +15,6 @@ export default function MainPage() {
     }
   }, [loading, data])
 
-  if (loading) {
-    return (
-      <div className="spinner-border" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </div>
-    )
-  }
   if (error) {
     return <h2>Something terrible happen!</h2>
   }
@@ -29,7 +23,7 @@ export default function MainPage() {
       <h2 className="text-center">Add Users</h2>
       <div className="container-md">
         <Form refetch={refetch} />
-        <Users users={users} refetch={refetch} />
+        {loading ? <Spin /> : <Users users={users} refetch={refetch} />}
       </div>
     </div>
   )
