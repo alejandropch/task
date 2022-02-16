@@ -1,0 +1,6 @@
+{
+  "baseUrl": "https://task-alejandro-alejandropch.vercel.app",
+  "chormeWebSecurity": false,
+  "viewportWidth": 500,
+  "viewportHeight": 800
+}
