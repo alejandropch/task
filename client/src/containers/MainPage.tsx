@@ -1,18 +1,25 @@
-import React from "react"
-import UserForm from "../components/UserForm"
-import UserList from "../components/UserList"
+import React, { useEffect, useState } from "react"
+import Form from "./Form"
+import Users from "./Users"
+import { useUserQuery } from "../graphql/queries.graphql"
+
 export default function MainPage() {
+  const [users, setUsers] = useState([])
+  const { loading, error, data, refetch } = useUserQuery()
+
+  useEffect(() => {
+    if (!loading) {
+      const userData = data.users
+      setUsers(userData)
+    }
+  }, [loading, data])
   return (
     <div className="container-md">
       <h2 className="text-center">Add Users</h2>
       <div className="container-md">
-        <UserForm />
-        <UserList />
+        <Form refetch={refetch} />
+        <Users users={users} refetch={refetch} />
       </div>
-      {/* <p className="form-text">{message}</p>
-      <p className="form-text fs-6 text-center">
-        Don't you have an account yet? <Link to="/register">Sign up</Link>
-      </p> */}
     </div>
   )
 }
