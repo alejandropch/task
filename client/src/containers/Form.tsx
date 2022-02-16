@@ -5,13 +5,17 @@ export default function Form({ refetch }: any) {
   const form = useRef<HTMLFormElement>(null)
   const [message, setMessage] = useState("")
   const addUser = useAddMutation(setMessage)
+
   const handleClick = async () => {
     const formData = new FormData(form.current!)
     const User = Object.fromEntries(formData)
+
     const { first_name, last_name, email, note } = User
+
     const newUser = await addUser({
       variables: { first_name, last_name, email, note },
     })
+
     if (!newUser.errors) {
       setMessage("User created!")
       refetch()
